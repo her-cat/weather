@@ -1,27 +1,274 @@
-<h1 align="center"> weather </h1>
+<h1 align="center"> Weather </h1>
 
-<p align="center"> A weather SDK.</p>
+<p align="center"> :rainbow: 基于高德开放平台的 PHP 天气信息组件。 </p>
 
 
-## Installing
+## 安装
 
 ```shell
 $ composer require hercat/weather -vvv
 ```
 
-## Usage
+## 配置
 
-TODO
+在使用本扩展之前，你需要去 [高德开放平台](https://lbs.amap.com/dev/id/newuser) 注册账号，然后创建应用，获取应用的 API Key。
 
-## Contributing
+## 使用
 
-You can contribute in one of three ways:
+```php
+use HerCat\Weather\Weather;
 
-1. File bug reports using the [issue tracker](https://github.com/hercat/weather/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/hercat/weather/issues).
-3. Contribute new features or update the wiki.
+$key = 'xxxxxxxxxxxxxxxxxxxxxx';
 
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
+$weather = new Weather($key);
+```
+
+### 获取实时天气
+
+```php
+$response = $weather->getWeather('深圳');
+```
+
+示例：
+
+```json
+{
+    "status":"1",
+    "count":"1",
+    "info":"OK",
+    "infocode":"10000",
+    "lives":[
+        {
+            "province":"广东",
+            "city":"深圳市",
+            "adcode":"440300",
+            "weather":"阴",
+            "temperature":"24",
+            "winddirection":"北",
+            "windpower":"≤3",
+            "humidity":"97",
+            "reporttime":"2019-06-11 22:46:23"
+        }
+    ]
+}
+```
+
+### 获取最近天气预报
+
+```php
+$response = $weather->getWeather('深圳', 'all');
+```
+
+示例：
+
+```json
+{
+    "status":"1",
+    "count":"1",
+    "info":"OK",
+    "infocode":"10000",
+    "forecasts":[
+        {
+            "city":"深圳市",
+            "adcode":"440300",
+            "province":"广东",
+            "reporttime":"2019-06-11 23:15:37",
+            "casts":[
+                {
+                    "date":"2019-06-11",
+                    "week":"2",
+                    "dayweather":"阴",
+                    "nightweather":"中雨",
+                    "daytemp":"28",
+                    "nighttemp":"25",
+                    "daywind":"无风向",
+                    "nightwind":"无风向",
+                    "daypower":"≤3",
+                    "nightpower":"≤3"
+                },
+                {
+                    "date":"2019-06-12",
+                    "week":"3",
+                    "dayweather":"大雨",
+                    "nightweather":"大暴雨",
+                    "daytemp":"29",
+                    "nighttemp":"26",
+                    "daywind":"西南",
+                    "nightwind":"西南",
+                    "daypower":"4",
+                    "nightpower":"4"
+                },
+                {
+                    "date":"2019-06-13",
+                    "week":"4",
+                    "dayweather":"大暴雨",
+                    "nightweather":"大雨",
+                    "daytemp":"29",
+                    "nighttemp":"25",
+                    "daywind":"南",
+                    "nightwind":"南",
+                    "daypower":"4",
+                    "nightpower":"4"
+                },
+                {
+                    "date":"2019-06-14",
+                    "week":"5",
+                    "dayweather":"大雨",
+                    "nightweather":"阵雨",
+                    "daytemp":"30",
+                    "nighttemp":"26",
+                    "daywind":"无风向",
+                    "nightwind":"无风向",
+                    "daypower":"≤3",
+                    "nightpower":"≤3"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### 获取 XML 格式返回值
+
+第三个参数为返回值类型，可选 `json` 与 `xml`，默认 `json` ：
+
+```php
+$response = $weather->getWeather('深圳', 'all', 'xml');
+```
+
+示例：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?><root>
+  <status>1</status>
+  <count>1</count>
+  <info>OK</info>
+  <infocode>10000</infocode>
+  <forecasts type="list">
+    <forecast>
+      <city>深圳市</city>
+      <adcode>440300</adcode>
+      <province>广东</province>
+      <reporttime>2019-06-11 23:15:37</reporttime>
+      <casts type="list">
+        <cast>
+          <date>2019-06-11</date>
+          <week>2</week>
+          <dayweather>阴</dayweather>
+          <nightweather>中雨</nightweather>
+          <daytemp>28</daytemp>
+          <nighttemp>25</nighttemp>
+          <daywind>无风向</daywind>
+          <nightwind>无风向</nightwind>
+          <daypower>≤3</daypower>
+          <nightpower>≤3</nightpower>
+        </cast>
+        <cast>
+          <date>2019-06-12</date>
+          <week>3</week>
+          <dayweather>大雨</dayweather>
+          <nightweather>大暴雨</nightweather>
+          <daytemp>29</daytemp>
+          <nighttemp>26</nighttemp>
+          <daywind>西南</daywind>
+          <nightwind>西南</nightwind>
+          <daypower>4</daypower>
+          <nightpower>4</nightpower>
+        </cast>
+        <cast>
+          <date>2019-06-13</date>
+          <week>4</week>
+          <dayweather>大暴雨</dayweather>
+          <nightweather>大雨</nightweather>
+          <daytemp>29</daytemp>
+          <nighttemp>25</nighttemp>
+          <daywind>南</daywind>
+          <nightwind>南</nightwind>
+          <daypower>4</daypower>
+          <nightpower>4</nightpower>
+        </cast>
+        <cast>
+          <date>2019-06-14</date>
+          <week>5</week>
+          <dayweather>大雨</dayweather>
+          <nightweather>阵雨</nightweather>
+          <daytemp>30</daytemp>
+          <nighttemp>26</nighttemp>
+          <daywind>无风向</daywind>
+          <nightwind>无风向</nightwind>
+          <daypower>≤3</daypower>
+          <nightpower>≤3</nightpower>
+        </cast>
+      </casts>
+    </forecast>
+  </forecasts>
+</root>
+```
+
+### 参数说明
+
+```php
+array|string getWeather(string $city, string $type = 'base', string $format = 'json')
+```
+
+> - $city - 城市名，比如：“深圳”；
+> - $type - 返回内容类型：base: 返回实况天气 / all: 返回预报天气；
+> - $format - 输出的数据格式，默认为 json 格式，当 output 设置为 “xml” 时，输出的为 XML 格式的数据。
+
+### 在 Laravel 中使用
+
+在 Laravel 中使用也是同样的安装方式，配置写在 `config/services.php` 中：
+
+```php
+.
+.
+.
+'weather' => [
+    'key' => env('WEATHER_API_KEY'),
+],
+```
+
+然后在 `.env` 中配置 `WEATHER_API_KEY` ：
+
+```dotenv
+WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
+```
+
+可以用两种方式来获取 `HerCat\Weather\Weather` 实例：
+
+#### 方法参数注入
+
+```php
+.
+.
+.
+public function show(Weather $weather) 
+{
+    $response = $weather->getWeather('深圳');
+}
+.
+.
+.
+```
+
+#### 服务名访问
+
+```php
+.
+.
+.
+public function show() 
+{
+    $response = app('weather')->getWeather('深圳');
+}
+.
+.
+.
+```
+
+## 参考
+
+- [高德开放平台](https://lbs.amap.com/dev/id/newuser)
 
 ## License
 
