@@ -10,6 +10,8 @@ namespace HerCat\Weather;
 
 
 use GuzzleHttp\Client;
+use HerCat\Weather\Exceptions\HttpException;
+use HerCat\Weather\Exceptions\InvalidArgumentException;
 
 class Weather
 {
@@ -35,17 +37,29 @@ class Weather
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
 
+        if (!\in_array(\strtolower($type), ['base', 'all'])) {
+            throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
+        }
+
+        if (!\in_array(\strtolower($format), ['json', 'xml'])) {
+            throw new InvalidArgumentException('Invalid response format(json/xml): '.$format);
+        }
+
         $query = array_filter([
             'key' => $this->key,
             'city' => $city,
-            'extensions' => $type,
-            'output' => $format,
+            'extensions' => \strtolower($type),
+            'output' => \strtolower($format),
         ]);
 
-        $response = $this->getHttpClient()->get($url, [
-            'query' => $query,
-        ])->getBody()->getContents();
+        try {
+            $response = $this->getHttpClient()->get($url, [
+                'query' => $query,
+            ])->getBody()->getContents();
 
-        return 'json' === $format ? \json_decode($response, true) : $response;
+            return 'json' === $format ? \json_decode($response, true) : $response;
+        } catch (\Exception $e) {
+            throw new HttpException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 }
