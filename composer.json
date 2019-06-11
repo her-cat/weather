@@ -1,0 +1,19 @@
+{
+    "name": "her-cat/weather",
+    "description": "A weather SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "her-cat",
+            "email": "hxhsoft@foxmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "HerCat\\Weather\\": "src"
+        }
+    }
+}
