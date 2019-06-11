@@ -6,7 +6,7 @@
 ## 安装
 
 ```shell
-$ composer require hercat/weather -vvv
+$ composer require her-cat/weather -vvv
 ```
 
 ## 配置
