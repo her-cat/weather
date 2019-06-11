@@ -17,5 +17,12 @@
         "psr-4": {
             "HerCat\\Weather\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HerCat\\Weather\\ServiceProvider"
+            ]
+        }
     }
 }
