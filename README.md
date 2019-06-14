@@ -168,7 +168,6 @@ array|string getForecastsWeather(string $city, string $format = 'json')
 ```
 
 > - $city - 城市名，比如：“深圳”；
-> - $type - 返回内容类型：base: 返回实况天气 / all: 返回预报天气；
 > - $format - 输出的数据格式，默认为 json 格式，当 output 设置为 “xml” 时，输出的为 XML 格式的数据。
 
 ### 在 Laravel 中使用
