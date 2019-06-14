@@ -26,7 +26,7 @@ $weather = new Weather($key);
 ### 获取实时天气
 
 ```php
-$response = $weather->getWeather('深圳');
+$response = $weather->getLiveWeather('深圳');
 ```
 
 示例：
@@ -53,10 +53,10 @@ $response = $weather->getWeather('深圳');
 }
 ```
 
-### 获取最近天气预报
+### 获取天气预报
 
 ```php
-$response = $weather->getWeather('深圳', 'all');
+$response = $weather->getForecastsWeather('深圳', 'all');
 ```
 
 示例：
@@ -133,7 +133,7 @@ $response = $weather->getWeather('深圳', 'all');
 第三个参数为返回值类型，可选 `json` 与 `xml`，默认 `json` ：
 
 ```php
-$response = $weather->getWeather('深圳', 'all', 'xml');
+$response = $weather->getLiveWeather('深圳', 'all', 'xml');
 ```
 
 示例：
@@ -144,71 +144,27 @@ $response = $weather->getWeather('深圳', 'all', 'xml');
   <count>1</count>
   <info>OK</info>
   <infocode>10000</infocode>
-  <forecasts type="list">
-    <forecast>
+  <lives type="list">
+    <live>
+      <province>广东</province>
       <city>深圳市</city>
       <adcode>440300</adcode>
-      <province>广东</province>
-      <reporttime>2019-06-11 23:15:37</reporttime>
-      <casts type="list">
-        <cast>
-          <date>2019-06-11</date>
-          <week>2</week>
-          <dayweather>阴</dayweather>
-          <nightweather>中雨</nightweather>
-          <daytemp>28</daytemp>
-          <nighttemp>25</nighttemp>
-          <daywind>无风向</daywind>
-          <nightwind>无风向</nightwind>
-          <daypower>≤3</daypower>
-          <nightpower>≤3</nightpower>
-        </cast>
-        <cast>
-          <date>2019-06-12</date>
-          <week>3</week>
-          <dayweather>大雨</dayweather>
-          <nightweather>大暴雨</nightweather>
-          <daytemp>29</daytemp>
-          <nighttemp>26</nighttemp>
-          <daywind>西南</daywind>
-          <nightwind>西南</nightwind>
-          <daypower>4</daypower>
-          <nightpower>4</nightpower>
-        </cast>
-        <cast>
-          <date>2019-06-13</date>
-          <week>4</week>
-          <dayweather>大暴雨</dayweather>
-          <nightweather>大雨</nightweather>
-          <daytemp>29</daytemp>
-          <nighttemp>25</nighttemp>
-          <daywind>南</daywind>
-          <nightwind>南</nightwind>
-          <daypower>4</daypower>
-          <nightpower>4</nightpower>
-        </cast>
-        <cast>
-          <date>2019-06-14</date>
-          <week>5</week>
-          <dayweather>大雨</dayweather>
-          <nightweather>阵雨</nightweather>
-          <daytemp>30</daytemp>
-          <nighttemp>26</nighttemp>
-          <daywind>无风向</daywind>
-          <nightwind>无风向</nightwind>
-          <daypower>≤3</daypower>
-          <nightpower>≤3</nightpower>
-        </cast>
-      </casts>
-    </forecast>
-  </forecasts>
+      <weather>多云</weather>
+      <temperature>30</temperature>
+      <winddirection>东北</winddirection>
+      <windpower>≤3</windpower>
+      <humidity>57</humidity>
+      <reporttime>2019-06-14 18:46:06</reporttime>
+    </live>
+  </lives>
 </root>
 ```
 
 ### 参数说明
 
 ```php
-array|string getWeather(string $city, string $type = 'base', string $format = 'json')
+array|string getLiveWeather(string $city, string $format = 'json')
+array|string getForecastsWeather(string $city, string $format = 'json')
 ```
 
 > - $city - 城市名，比如：“深圳”；
@@ -244,7 +200,7 @@ WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 .
 public function show(Weather $weather) 
 {
-    $response = $weather->getWeather('深圳');
+    $response = $weather->getLiveWeather('深圳');
 }
 .
 .
@@ -259,7 +215,7 @@ public function show(Weather $weather)
 .
 public function show() 
 {
-    $response = app('weather')->getWeather('深圳');
+    $response = app('weather')->getLiveWeather('深圳');
 }
 .
 .
