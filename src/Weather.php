@@ -47,8 +47,8 @@ class Weather
     }
 
     public function getWeather($city, $type = 'base', $format = 'json')
-    {$url = 'https://restapi.amap.com/v3/weather/weatherInfo';
-
+    {
+        $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
         if (!\in_array(\strtolower($type), ['base', 'all'])) {
             throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
         }
