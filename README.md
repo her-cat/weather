@@ -133,7 +133,7 @@ $response = $weather->getForecastsWeather('深圳', 'all');
 第三个参数为返回值类型，可选 `json` 与 `xml`，默认 `json` ：
 
 ```php
-$response = $weather->getLiveWeather('深圳', 'all', 'xml');
+$response = $weather->getLiveWeather('深圳', 'xml');
 ```
 
 示例：
