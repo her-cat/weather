@@ -12,8 +12,7 @@
 namespace HerCat\Weather\Exceptions;
 
 /**
- * Class HttpException
- * @package HerCat\Weather\Exceptions
+ * Class HttpException.
  */
 class HttpException extends Exception
 {
