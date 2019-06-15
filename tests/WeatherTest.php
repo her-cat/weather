@@ -20,6 +20,10 @@ use HerCat\Weather\Weather;
 use Mockery\Matcher\AnyArgs;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class WeatherTest
+ * @package HerCat\Weather\Tests
+ */
 class WeatherTest extends TestCase
 {
     // 检查 $type 参数
