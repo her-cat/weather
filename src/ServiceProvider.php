@@ -12,8 +12,7 @@
 namespace HerCat\Weather;
 
 /**
- * Class ServiceProvider
- * @package HerCat\Weather
+ * Class ServiceProvider.
  */
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

@@ -16,8 +16,7 @@ use HerCat\Weather\Exceptions\HttpException;
 use HerCat\Weather\Exceptions\InvalidArgumentException;
 
 /**
- * Class Weather
- * @package HerCat\Weather
+ * Class Weather.
  */
 class Weather
 {
@@ -33,6 +32,7 @@ class Weather
 
     /**
      * Weather constructor.
+     *
      * @param string $key
      */
     public function __construct($key)
