@@ -97,20 +97,23 @@ class Weather
     public function getWeather($city, $type = 'base', $format = 'json')
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
+
         if (!\in_array(\strtolower($type), ['base', 'all'])) {
             throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
         }
 
-        $format = \strtolower($format);
-        if (!\in_array($format, ['json', 'xml'])) {
+        if (!\in_array(\strtolower($format), ['json', 'xml'])) {
             throw new InvalidArgumentException('Invalid response format(json/xml): '.$format);
         }
+
+        $type = \strtolower($type);
+        $format = \strtolower($format);
 
         $query = array_filter([
             'key' => $this->key,
             'city' => $city,
-            'output' => \strtolower($format),
-            'extensions' => \strtolower($type),
+            'output' => $format,
+            'extensions' => $type,
         ]);
 
         try {
