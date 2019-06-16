@@ -101,7 +101,8 @@ class Weather
             throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
         }
 
-        if (!\in_array(\strtolower($format), ['json', 'xml'])) {
+        $format = \strtolower($format);
+        if (!\in_array($format, ['json', 'xml'])) {
             throw new InvalidArgumentException('Invalid response format(json/xml): '.$format);
         }
 
