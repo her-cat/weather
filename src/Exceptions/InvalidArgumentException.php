@@ -12,8 +12,7 @@
 namespace HerCat\Weather\Exceptions;
 
 /**
- * Class InvalidArgumentException
- * @package HerCat\Weather\Exceptions
+ * Class InvalidArgumentException.
  */
 class InvalidArgumentException extends Exception
 {

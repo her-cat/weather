@@ -21,8 +21,7 @@ use Mockery\Matcher\AnyArgs;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class WeatherTest
- * @package HerCat\Weather\Tests
+ * Class WeatherTest.
  */
 class WeatherTest extends TestCase
 {
