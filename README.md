@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/her-cat/weather.svg?branch=master)](https://travis-ci.org/her-cat/weather) 
 [![StyleCI build status](https://github.styleci.io/repos/191371777/shield)](https://github.styleci.io/repos/191371777)
+![GitHub](https://img.shields.io/github/license/her-cat/weather.svg)
 
 ## 安装
 
