@@ -59,7 +59,7 @@ $response = $weather->getLiveWeather('深圳');
 ### 获取天气预报
 
 ```php
-$response = $weather->getForecastsWeather('深圳', 'all');
+$response = $weather->getForecastsWeather('深圳', 'json');
 ```
 
 示例：
